@@ -31,9 +31,11 @@ function PokemonCard() {
         }
       }
 
-    <requirement>
-        <br><br/>
-    <requireement/>
+    <requirement id="REQ123"
+                helo="jsiwj">
+        
+    Här är ett requirement
+    </requirement>
 
     const [pokemonImage, setPokemonImage] = useState("Gen1/1.png")
     const handleImageSwitch = () => {
