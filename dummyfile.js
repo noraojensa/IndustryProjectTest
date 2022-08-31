@@ -21,7 +21,8 @@ function PokemonCard() {
         setPokemonName(pokemonNameChange);
         console.log(e.target);
 
-
+        Nora e kungen i djungeln och det ska alla
+        veta och det är jätebra
 
         //checks the nr in the image name and takes that as index in the pokemonlist to check against the input
         if(pokemonNameChange.toLowerCase() === pokemonList[pokemonImage.slice(5, -4)-1].toLowerCase()){
