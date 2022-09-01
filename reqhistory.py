@@ -14,7 +14,7 @@ directory = "C:\\Users\\no\\Documents\\IndustryProject"
 repo = Repo(directory)
 repo.git.checkout("main")
 
-found = False
+
 
 file_with_req = subprocess.check_output(['grep', '-r', '-l', REQID], shell=True) #searches in current directory for the reqid
 file_with_req = file_with_req.decode("utf-8")
@@ -22,6 +22,7 @@ file_with_req = file_with_req.decode("utf-8")
 file_with_req = file_with_req[:-1] #Removes trailing newline
 
 for elem in range(5):
+    found = False
     with open(file_with_req,"r") as f:
         for line in f:
             if REQID in line:
