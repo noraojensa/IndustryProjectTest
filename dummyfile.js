@@ -30,10 +30,10 @@ function PokemonCard() {
         }
       }
 
-    <requirement id="REQ123"
+    <requirement id = "REQ123"
                 source="jsiwj">
         
-    Här är ett requirement
+    Här är ett requirement REVISIONED VERSION!!!!
     </requirement>
 
     const [pokemonImage, setPokemonImage] = useState("Gen1/1.png")

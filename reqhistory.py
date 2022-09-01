@@ -1,6 +1,7 @@
 import sys
 import subprocess
 import os
+from pathlib import Path
 from git.repo import Repo
 
 #TO-DO
@@ -10,7 +11,8 @@ from git.repo import Repo
 
 REQID = sys.argv[1] #User input REQID to print history for
 #os.chdir("C:/Users/no/Desktop/IndustryProjectTest") #Directory in which the script looks for REQID -> Make dynamic
-directory = "C:\\Users\\no\\Documents\\IndustryProject"
+directory = Path.cwd()
+#"C:\\Users\\no\\Documents\\IndustryProject"
 repo = Repo(directory)
 repo.git.checkout("main")
 
