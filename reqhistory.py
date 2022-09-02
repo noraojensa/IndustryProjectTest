@@ -16,10 +16,10 @@ directory = Path.cwd()
 repo = Repo(directory)
 repo.git.checkout("minorFixes")
 
-searchString = str(directory) + '/*.js'
+searchString = str(directory) + '/*.js' #This should only look at markdown files, in accordance with how reqs are stored at Ericsson
 
 for filename in glob.glob(searchString):
-   for elem in range(5):
+   while repo.git.checkout("HEAD~"): #find a way to see how many commits there have been in total!!!
      found = False
      with open(os.path.join(os.getcwd(), filename), 'r') as f:
        #text = f.read()
