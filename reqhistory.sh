@@ -4,7 +4,7 @@
 # - Make while loop, which switches to earlier commit in the end, if none left loop ends
 # - This prints out the REQ even if it hasn't changed -> save previous string and compare with new commit 
 
-cd C:/Users/no/Desktop/IndustryProjectTest
+cd /Users/audurtheodorsdottir/Desktop/chalmers/2022stp1/DAT306/IndustryProjectTest
 found=False
 
 file=$(grep -r -l "<requirement")
