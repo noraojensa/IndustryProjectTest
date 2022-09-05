@@ -13,7 +13,10 @@ import glob
 REQID = sys.argv[1] #User input REQID to print history for
 #directory = os.chdir("/Users/audurtheodorsdottir/Desktop/chalmers/2022stp1/DAT306/IndustryProjectTest") #Directory in which the script looks for REQID -> Make dynamic
 #directory = Path.cwd() THE ONE WE'LL USE IN THE END
-directory = "C:\\Users\\no\\Documents\\Dummy_project"
+
+#directory = "C:\\Users\\no\\Documents\\Dummy_project"
+directory = "/Users/audurtheodorsdottir/Desktop/chalmers/2022stp1/DAT306/Dummy_project"
+
 repo = Repo(directory)
 repo.git.checkout("main")
 
