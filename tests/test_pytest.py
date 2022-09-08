@@ -1,4 +1,4 @@
-from section_history.reqhistory import reqHistory
+from section_history.reqhistory import get_history
 from pathlib import Path
 from git.repo import Repo
 
@@ -6,15 +6,13 @@ from git.repo import Repo
 def test_reqNotExist():
     reqID = "REQ222"
     directory = "/Users/audurtheodorsdottir/Desktop/chalmers/2022stp1/DAT306/Dummy_project"
-    repo = Repo(directory)
-    assert reqHistory(reqID, directory, repo) == '' #should maybe return an error message...
+    assert get_history(reqID, directory) == '' #should maybe return an error message...
 '''
 
 '''def test_reqHistory():
     reqID = "REQ123"
     directory = "/Users/audurtheodorsdottir/Desktop/chalmers/2022stp1/DAT306/Dummy_project"
-    repo = Repo(directory)
-    assert reqHistory(reqID, directory, repo) == \'''    <requirement id = "REQ123"
+    assert get_history(reqID, directory) == \'''    <requirement id = "REQ123"
                 source="nora">
         
     Här är det nya fantastiska requirementet
@@ -44,7 +42,7 @@ def test_newRepo(tmp_path: Path):
 
 
     reqId = "REQ333"
-    assert reqHistory(reqId, repo_path, repo) == "<requirement id = \"REQ333\" source=\"jsiwj\"> This is a new requirement</requirement>"
+    assert get_history(reqId, repo_path) == "<requirement id = \"REQ333\" source=\"jsiwj\"> This is a new requirement</requirement>"
 
 
     #collect_stats(repo_path, tmp_path / "log.csv", 1, 2)
