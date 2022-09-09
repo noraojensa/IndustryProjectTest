@@ -27,14 +27,9 @@ def get_history(REQID, repo_path):
     prev_req = ""
     curr_req = ""
     total_req = ""
-    today = datetime.datetime.now()
-    one_year_ago = today - relativedelta(years=1)
-    utc=pytz.UTC
-    
-    
 
-    while one_year_ago.replace(tzinfo=utc) < repo.head.commit.committed_datetime.replace(tzinfo=utc):
-        for filename in glob.glob(searchString):
+    for filename in glob.glob(searchString):
+        while filename in glob.glob(searchString):
             found = False
             with open(os.path.join(os.getcwd(), filename), 'r') as f:
                 for line in f:
@@ -44,20 +39,17 @@ def get_history(REQID, repo_path):
                         curr_req += line
                     if "</requirement>" in line:
                         break           
-            
+
             if curr_req != prev_req:
                 print(curr_req)
                 total_req += curr_req
                 prev_req = curr_req
+                #add autor and date to output (total_req)..
 
             curr_req = ""
             repo.git.checkout("HEAD~")
-  
-        if glob.glob(searchString) == []:
-            break
 
-
-    repo.git.checkout("main")
+        repo.git.checkout("main")
     return total_req
 
 if __name__ == "__main__":
