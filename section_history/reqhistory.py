@@ -12,7 +12,7 @@ class Entry:
     commit: str
     author: str
     date: datetime
-    text: str
+    text: str  #now the whole req item but should only include the text of the requirement!!!
 
     def __str__(self):
         return f"\nFile: {self.file} \nCommit: {self.commit} \nAuthor: {self.author} \nDate: {self.date} \n\n{self.text}"
@@ -34,13 +34,13 @@ def add_entry_info(repo, filename, current_section):
     return new_entry
 
 
-def get_history(REQID, repo_path):
+def get_history(REQID, repo_path, branch_name):
 
     #Initiates git repo
     repo = Repo(repo_path)
-    repo.git.checkout("main")
+    repo.git.checkout(branch_name)
 
-    searchString = str(repo_path) + '/*.js' #This should only look at markdown files, in accordance with how reqs are stored at Ericsson
+    searchString = str(repo_path) + '/*.md' #This should only look at markdown files, in accordance with how reqs are stored at Ericsson
     current_section = ""
     history = []
 
@@ -64,9 +64,12 @@ def get_history(REQID, repo_path):
                 history.append(add_entry_info(repo, filename, current_section))
             #Jump one commit back
             current_section = ""
-            repo.git.checkout("HEAD~")
+            try:
+                repo.git.checkout("HEAD~")
+            except Exception as e:
+                break
         #Return to newest commit again
-        repo.git.checkout("main")
+        repo.git.checkout(branch_name)
     return history
 
 if __name__ == "__main__":
@@ -74,5 +77,6 @@ if __name__ == "__main__":
     #directory = "C:\\Users\\no\\Documents\\Dummy_project"
     directory = "/Users/audurtheodorsdottir/Desktop/chalmers/2022stp1/DAT306/Dummy_project"
     #directory = Path.cwd() THE ONE WE'LL USE IN THE END
-    entries = get_history(reqid, directory)
+    branch_name = "main"
+    entries = get_history(reqid, directory, branch_name)
     print(EntryList(entries))
